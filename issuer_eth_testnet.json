@@ -4,7 +4,7 @@
     "https://w3id.org/blockcerts/v2"
   ],
   "type": "Profile",
-  "id": "https://raw.githubusercontent.com/prabhu-dev/blockcerts_demo_testing/master/issuer_eth_testnet.json?raw=true"
+  "id": "https://raw.githubusercontent.com/prabhu-dev/blockcerts_demo_testing/master/issuer_eth_testnet.json?raw=true",
   "name": "C21U at Gatech",
   "url": "http://c21u.gatech.edu/",
   "introductionURL": "http://c21u.gatech.edu/",
