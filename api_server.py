@@ -1,7 +1,7 @@
 #THIS IS A WEBSERVER FOR DEMONSTRATING THE TYPES OF RESPONSES WE SEE FROM AN API ENDPOINT
 import os
 from flask import Flask
-from flask import request
+from flask import request,abort
 from flask import json,jsonify
 from database_definition import Base, Person
 from sqlalchemy import create_engine
@@ -29,17 +29,21 @@ def read_issuer_json():
 # POST Data from Blockcerts app or PUT Data for creating a new user
 @app.route('/', methods=['POST','PUT'])
 def create_update_user():
-    if request.method == 'POST':
-        request_data_dict = json.loads(request.data)
-        return update_user_address(request_data_dict)
+    try:
+        if request.method == 'POST':
+            request_data_dict = json.loads(request.data)
+            return update_user_address(request_data_dict)
 
-    elif request.method == 'PUT':
-        return add_new_user_to_table(request.args)
+        elif request.method == 'PUT':
+            return add_new_user_to_table(request.args)
+    except:
+        return abort(404)
     
 
 def update_user_address(user_data):
     person = session.query(Person).filter_by(nonce=int(user_data['nonce'])).one()
     person.public_address = user_data['bitcoinAddress']
+    person.nonce = None
     session.add(person)
     session.commit()
     return "Updated user address to %s" % person.public_address
