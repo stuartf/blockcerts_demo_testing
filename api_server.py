@@ -1,4 +1,5 @@
 #THIS IS A WEBSERVER FOR DEMONSTRATING THE TYPES OF RESPONSES WE SEE FROM AN API ENDPOINT
+import os
 from flask import Flask
 from flask import request
 from flask import json,jsonify
@@ -57,4 +58,4 @@ def add_new_user_to_table(data):
 
 if __name__ == '__main__':
     app.debug = True
-    app.run(host="0.0.0.0", port="80")
+    app.run(host="0.0.0.0", port=os.getenv("BLOCKCERT_SERVER_PORT", 3000))
