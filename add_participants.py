@@ -42,4 +42,4 @@ if __name__ == '__main__':
         reader = csv.DictReader(f)
         data = [r for r in reader]
 
-    print add_new_user_to_table(data)
+    print(add_new_user_to_table(data))
